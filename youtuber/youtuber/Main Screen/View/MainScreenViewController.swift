@@ -106,7 +106,7 @@ extension MainScreenViewController: UITextFieldDelegate {
             
             videosArray.removeAll(keepingCapacity: false)
          
-            let urlString = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=\(self.searchingtextField.text!)&type=video&key=" + (apiKey as! String)
+            let urlString: String = ("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=\(self.searchingtextField.text!)&type=video&key=" + (apiKey as! String)).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             
             self.mainScreenPresenterDelegate?.fetchVideos(urlString: urlString)
         }
