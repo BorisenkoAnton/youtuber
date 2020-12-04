@@ -40,7 +40,6 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
                         
                         videoDetailsDict["title"] = snippetDict["title"]
                         videoDetailsDict["publishedAt"] = self.formatDateString(dateString: snippetDict["publishedAt"] as! String)
-                        videoDetailsDict["description"] = snippetDict["description"]
                         videoDetailsDict["thumbnail"] = ((snippetDict["thumbnails"] as! Dictionary<String, Any>)["default"] as! Dictionary<String, Any>)["url"]
                         videoDetailsDict["videoID"] = (items[i]["id"] as! Dictionary<String, Any>)["videoId"]
                         
