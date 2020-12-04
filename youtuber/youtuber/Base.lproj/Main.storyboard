@@ -27,7 +27,7 @@
                                 <rect key="frame" x="20" y="145" width="374" height="716.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="SwJ-uh-0eu">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VideoCell" rowHeight="100" id="SwJ-uh-0eu" customClass="VideosTableViewCell" customModule="youtuber" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SwJ-uh-0eu" id="GH2-cl-FZl">
@@ -37,18 +37,9 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bx9-qz-k1H">
                                                     <rect key="frame" x="0.0" y="0.0" width="143" height="100"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9N-to-BS8">
-                                                    <rect key="frame" x="151" y="0.0" width="223" height="70"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="70" id="5Ue-oD-Tua"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9N-to-BS8">
+                                                    <rect key="frame" x="151" y="0.0" width="223" height="100"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaF-ou-8Af">
-                                                    <rect key="frame" x="151" y="77" width="223" height="23"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -58,17 +49,22 @@
                                                 <constraint firstItem="q9N-to-BS8" firstAttribute="top" secondItem="GH2-cl-FZl" secondAttribute="top" id="RZ0-bd-K0e"/>
                                                 <constraint firstItem="bx9-qz-k1H" firstAttribute="top" secondItem="GH2-cl-FZl" secondAttribute="top" id="S8b-7d-OnM"/>
                                                 <constraint firstAttribute="bottom" secondItem="bx9-qz-k1H" secondAttribute="bottom" id="TaR-b2-Mfp"/>
-                                                <constraint firstItem="oaF-ou-8Af" firstAttribute="top" secondItem="q9N-to-BS8" secondAttribute="bottom" constant="7" id="USZ-pI-iOx"/>
                                                 <constraint firstItem="bx9-qz-k1H" firstAttribute="width" secondItem="GH2-cl-FZl" secondAttribute="width" multiplier="0.382353" id="bSB-M1-rfy"/>
                                                 <constraint firstAttribute="trailing" secondItem="q9N-to-BS8" secondAttribute="trailing" id="dHa-aU-Fqi"/>
                                                 <constraint firstItem="q9N-to-BS8" firstAttribute="leading" secondItem="bx9-qz-k1H" secondAttribute="trailing" constant="8" id="kKe-QG-cWW"/>
-                                                <constraint firstAttribute="trailing" secondItem="oaF-ou-8Af" secondAttribute="trailing" id="nqM-2I-Fsu"/>
-                                                <constraint firstAttribute="bottom" secondItem="oaF-ou-8Af" secondAttribute="bottom" id="odm-U0-jNz"/>
-                                                <constraint firstItem="oaF-ou-8Af" firstAttribute="leading" secondItem="bx9-qz-k1H" secondAttribute="trailing" constant="8" id="w7w-t4-8uE"/>
+                                                <constraint firstAttribute="bottom" secondItem="q9N-to-BS8" secondAttribute="bottom" id="uR5-sK-j2p"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="thumbnailImageView" destination="bx9-qz-k1H" id="gjQ-Rr-fSU"/>
+                                            <outlet property="videoNameLabel" destination="q9N-to-BS8" id="OgL-28-zvI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PU1-K7-ghK" id="3Ui-bM-U72"/>
+                                    <outlet property="delegate" destination="PU1-K7-ghK" id="qYL-EL-EsO"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -87,6 +83,7 @@
                     <navigationItem key="navigationItem" id="SzO-Ly-nsa"/>
                     <connections>
                         <outlet property="searchingtextField" destination="awA-u3-EEK" id="g8X-ee-sMV"/>
+                        <outlet property="videosTable" destination="bDO-db-UjY" id="v9o-JA-5ob"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dK1-kz-XfZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
