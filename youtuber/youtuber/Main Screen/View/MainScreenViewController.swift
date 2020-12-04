@@ -33,7 +33,6 @@ class MainScreenViewController: UIViewController {
             let playerViewController = segue.destination as! PlayerViewController
             
             playerViewController.videoID = (videosArray[selectedVideoIndex!]["videoID"] as! String)
-            playerViewController.videoDescription = videosArray[selectedVideoIndex!]["description"] as? String
         }
     }
 }

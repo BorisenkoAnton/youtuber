@@ -11,6 +11,9 @@
 		B42C579A257926EE00BE586E /* MainScreenPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C5799257926EE00BE586E /* MainScreenPresenterDelegate.swift */; };
 		B42C579D2579275300BE586E /* MainScreenViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C579C2579275300BE586E /* MainScreenViewControllerDelegate.swift */; };
 		B45844A025792EFD00BBDD7D /* APIConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B458449F25792EFD00BBDD7D /* APIConfig.plist */; };
+		B45F23E4257A5D43007E7B6F /* PlayerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F23E3257A5D43007E7B6F /* PlayerViewControllerDelegate.swift */; };
+		B45F23E6257A5DE5007E7B6F /* PlayerPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F23E5257A5DE5007E7B6F /* PlayerPresenterDelegate.swift */; };
+		B45F23E8257A5DF4007E7B6F /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F23E7257A5DF4007E7B6F /* PlayerPresenter.swift */; };
 		B479566225791D4D001A0C4E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B479566125791D4D001A0C4E /* NetworkManager.swift */; };
 		B4A9473D257A142C00B14195 /* VideosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9473C257A142C00B14195 /* VideosTableViewCell.swift */; };
 		B4A94740257A1FCE00B14195 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9473F257A1FCE00B14195 /* PlayerViewController.swift */; };
@@ -30,6 +33,9 @@
 		B42C5799257926EE00BE586E /* MainScreenPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenterDelegate.swift; sourceTree = "<group>"; };
 		B42C579C2579275300BE586E /* MainScreenViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewControllerDelegate.swift; sourceTree = "<group>"; };
 		B458449F25792EFD00BBDD7D /* APIConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIConfig.plist; sourceTree = "<group>"; };
+		B45F23E3257A5D43007E7B6F /* PlayerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewControllerDelegate.swift; sourceTree = "<group>"; };
+		B45F23E5257A5DE5007E7B6F /* PlayerPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenterDelegate.swift; sourceTree = "<group>"; };
+		B45F23E7257A5DF4007E7B6F /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
 		B479566125791D4D001A0C4E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B4A9473C257A142C00B14195 /* VideosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosTableViewCell.swift; sourceTree = "<group>"; };
 		B4A9473F257A1FCE00B14195 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -101,10 +107,29 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		B4A9473E257A1FA400B14195 /* Player Screen */ = {
+		B45F23E1257A5D25007E7B6F /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B4A9473F257A1FCE00B14195 /* PlayerViewController.swift */,
+				B45F23E3257A5D43007E7B6F /* PlayerViewControllerDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B45F23E2257A5D2A007E7B6F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B45F23E5257A5DE5007E7B6F /* PlayerPresenterDelegate.swift */,
+				B45F23E7257A5DF4007E7B6F /* PlayerPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		B4A9473E257A1FA400B14195 /* Player Screen */ = {
+			isa = PBXGroup;
+			children = (
+				B45F23E1257A5D25007E7B6F /* View */,
+				B45F23E2257A5D2A007E7B6F /* Presenter */,
 			);
 			path = "Player Screen";
 			sourceTree = "<group>";
@@ -269,8 +294,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B42C579D2579275300BE586E /* MainScreenViewControllerDelegate.swift in Sources */,
+				B45F23E8257A5DF4007E7B6F /* PlayerPresenter.swift in Sources */,
 				B4A9473D257A142C00B14195 /* VideosTableViewCell.swift in Sources */,
+				B45F23E4257A5D43007E7B6F /* PlayerViewControllerDelegate.swift in Sources */,
 				B42C579A257926EE00BE586E /* MainScreenPresenterDelegate.swift in Sources */,
+				B45F23E6257A5DE5007E7B6F /* PlayerPresenterDelegate.swift in Sources */,
 				B479566225791D4D001A0C4E /* NetworkManager.swift in Sources */,
 				B4E1306825790E17004A84CC /* MainScreenViewController.swift in Sources */,
 				B4A94740257A1FCE00B14195 /* PlayerViewController.swift in Sources */,
