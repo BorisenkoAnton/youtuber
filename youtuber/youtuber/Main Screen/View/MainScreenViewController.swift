@@ -15,6 +15,7 @@ class MainScreenViewController: UIViewController {
     var mainScreenPresenterDelegate: MainScreenPresenterDelegate?
     
     @IBOutlet weak var searchingtextField: UITextField!
+    @IBOutlet weak var videosTable: UITableView!
     
     override func viewDidLoad() {
         
@@ -33,6 +34,42 @@ extension MainScreenViewController: MainScreenViewControllerDelegate {
     func setMainScreenPresenterDelegate(delegate: MainScreenPresenterDelegate) {
         
         self.mainScreenPresenterDelegate = delegate
+    }
+    
+    
+    func setVideos(videos: Array<Dictionary<NSObject, Any>>) {
+        
+        self.videosArray = videos
+        print(videos[0])
+        self.videosTable.reloadData()
+    }
+}
+
+
+extension MainScreenViewController: UITableViewDelegate {
+    
+    
+}
+
+
+extension MainScreenViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return self.videosArray.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideosTableViewCell
+        
+        let videoDetails = videosArray[indexPath.row]
+        
+        cell.videoNameLabel.text = videoDetails["title" as NSObject] as? String
+        cell.thumbnailImageView.image = UIImage(data: NSData(contentsOf: NSURL(string: (videoDetails["thumbnail" as NSObject] as? String)!)! as URL)! as Data)
+        
+        return cell
     }
 }
 
@@ -53,7 +90,7 @@ extension MainScreenViewController: UITextFieldDelegate {
             
             videosArray.removeAll(keepingCapacity: false)
          
-            let urlString = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=\(self.searchingtextField.text!)&type=video&key=" + (apiKey as! String)
+            let urlString = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=\(self.searchingtextField.text!)&type=video&key=" + (apiKey as! String)
             
             self.mainScreenPresenterDelegate?.fetchVideos(urlString: urlString)
         }

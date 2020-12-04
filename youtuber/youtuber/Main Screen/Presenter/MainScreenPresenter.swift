@@ -44,6 +44,8 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
                         
                         videosArray.append(videoDetailsDict)
                     }
+                    
+                    self.viewDelegate?.setVideos(videos: videosArray)
                 } catch {
                     
                 }
