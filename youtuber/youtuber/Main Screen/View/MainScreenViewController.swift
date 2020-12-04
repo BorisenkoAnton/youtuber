@@ -13,6 +13,7 @@ class MainScreenViewController: UIViewController {
     private var videosArray = Array<Dictionary<NSObject, Any>>()
 
     var mainScreenPresenterDelegate: MainScreenPresenterDelegate?
+    var selectedVideoIndex: Int?
     
     @IBOutlet weak var searchingtextField: UITextField!
     @IBOutlet weak var videosTable: UITableView!
@@ -26,6 +27,13 @@ class MainScreenViewController: UIViewController {
     }
 
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "idPlayerSegue" && selectedVideoIndex != nil {
+            let playerViewController = segue.destination as! PlayerViewController
+            playerViewController.videoID = (videosArray[selectedVideoIndex!]["videoID" as NSObject] as! String)
+        }
+    }
 }
 
 
@@ -40,16 +48,13 @@ extension MainScreenViewController: MainScreenViewControllerDelegate {
     func setVideos(videos: Array<Dictionary<NSObject, Any>>) {
         
         self.videosArray = videos
-        print(videos[0])
+        
         self.videosTable.reloadData()
     }
 }
 
 
-extension MainScreenViewController: UITableViewDelegate {
-    
-    
-}
+extension MainScreenViewController: UITableViewDelegate {}
 
 
 extension MainScreenViewController: UITableViewDataSource {
@@ -70,6 +75,14 @@ extension MainScreenViewController: UITableViewDataSource {
         cell.thumbnailImageView.image = UIImage(data: NSData(contentsOf: NSURL(string: (videoDetails["thumbnail" as NSObject] as? String)!)! as URL)! as Data)
         
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.selectedVideoIndex = indexPath.row
+        
+        performSegue(withIdentifier: "idPlayerSegue", sender: self)
     }
 }
 

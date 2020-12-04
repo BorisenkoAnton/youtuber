@@ -1,0 +1,6 @@
+framework module Pods_youtuber {
+  umbrella header "Pods-youtuber-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -84,11 +84,43 @@
                     <connections>
                         <outlet property="searchingtextField" destination="awA-u3-EEK" id="g8X-ee-sMV"/>
                         <outlet property="videosTable" destination="bDO-db-UjY" id="v9o-JA-5ob"/>
+                        <segue destination="Vcz-Wy-w7M" kind="show" identifier="idPlayerSegue" id="qvY-bK-aef"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dK1-kz-XfZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="969.56521739130437" y="122.54464285714285"/>
+            <point key="canvasLocation" x="1039" y="123"/>
+        </scene>
+        <!--Player View Controller-->
+        <scene sceneID="Zn9-C8-bNp">
+            <objects>
+                <viewController id="Vcz-Wy-w7M" customClass="PlayerViewController" customModule="youtuber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rGo-fi-XfP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="slO-4S-0vP" customClass="YTPlayerView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="212"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="slO-4S-0vP" firstAttribute="top" secondItem="s9D-t0-xm4" secondAttribute="top" id="I8X-s6-t2G"/>
+                            <constraint firstItem="slO-4S-0vP" firstAttribute="trailing" secondItem="s9D-t0-xm4" secondAttribute="trailing" id="PMg-V6-AI9"/>
+                            <constraint firstItem="slO-4S-0vP" firstAttribute="leading" secondItem="s9D-t0-xm4" secondAttribute="leading" id="UOb-3M-kkM"/>
+                            <constraint firstItem="slO-4S-0vP" firstAttribute="height" secondItem="rGo-fi-XfP" secondAttribute="height" multiplier="0.236607" id="rKN-i5-h4w"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="s9D-t0-xm4"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dNT-wM-qrX"/>
+                    <connections>
+                        <outlet property="player" destination="slO-4S-0vP" id="rI7-gf-GC7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yxI-9y-hrK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1908.6956521739132" y="122.54464285714285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Aks-bI-pd7">
