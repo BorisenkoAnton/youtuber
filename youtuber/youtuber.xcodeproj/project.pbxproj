@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -92,6 +92,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B45F23E0257A4522007E7B6F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B479566125791D4D001A0C4E /* NetworkManager.swift */,
+				B458449F25792EFD00BBDD7D /* APIConfig.plist */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		B4A9473E257A1FA400B14195 /* Player Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,16 +130,15 @@
 		B4E1306225790E17004A84CC /* youtuber */ = {
 			isa = PBXGroup;
 			children = (
+				B45F23E0257A4522007E7B6F /* Networking */,
 				B42C5795257926B500BE586E /* Main Screen */,
 				B4A9473E257A1FA400B14195 /* Player Screen */,
 				B4E1306925790E17004A84CC /* Main.storyboard */,
+				B4E1306E25790E18004A84CC /* LaunchScreen.storyboard */,
 				B4E1306325790E17004A84CC /* AppDelegate.swift */,
 				B4E1306525790E17004A84CC /* SceneDelegate.swift */,
 				B4E1306C25790E18004A84CC /* Assets.xcassets */,
-				B4E1306E25790E18004A84CC /* LaunchScreen.storyboard */,
 				B4E1307125790E18004A84CC /* Info.plist */,
-				B458449F25792EFD00BBDD7D /* APIConfig.plist */,
-				B479566125791D4D001A0C4E /* NetworkManager.swift */,
 			);
 			path = youtuber;
 			sourceTree = "<group>";
@@ -141,7 +149,6 @@
 				B55FE280EB459FA5C0CAF1F8 /* Pods-youtuber.debug.xcconfig */,
 				81A5B4BD7FA057FA06216884 /* Pods-youtuber.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

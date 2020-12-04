@@ -10,7 +10,7 @@ import UIKit
 
 class MainScreenViewController: UIViewController {
 
-    private var videosArray = Array<Dictionary<NSObject, Any>>()
+    private var videosArray = Array<Dictionary<String, Any>>()
 
     var mainScreenPresenterDelegate: MainScreenPresenterDelegate?
     var selectedVideoIndex: Int?
@@ -32,8 +32,8 @@ class MainScreenViewController: UIViewController {
         if segue.identifier == "idPlayerSegue" && selectedVideoIndex != nil {
             let playerViewController = segue.destination as! PlayerViewController
             
-            playerViewController.videoID = (videosArray[selectedVideoIndex!]["videoID" as NSObject] as! String)
-            playerViewController.videoDescription = videosArray[selectedVideoIndex!]["description" as NSObject] as? String
+            playerViewController.videoID = (videosArray[selectedVideoIndex!]["videoID"] as! String)
+            playerViewController.videoDescription = videosArray[selectedVideoIndex!]["description"] as? String
         }
     }
 }
@@ -47,7 +47,7 @@ extension MainScreenViewController: MainScreenViewControllerDelegate {
     }
     
     
-    func setVideos(videos: Array<Dictionary<NSObject, Any>>) {
+    func setVideos(videos: Array<Dictionary<String, Any>>) {
         
         self.videosArray = videos
         
@@ -73,9 +73,9 @@ extension MainScreenViewController: UITableViewDataSource {
         
         let videoDetails = videosArray[indexPath.row]
         
-        cell.videoNameLabel.text = videoDetails["title" as NSObject] as? String
-        cell.thumbnailImageView.image = UIImage(data: NSData(contentsOf: NSURL(string: (videoDetails["thumbnail" as NSObject] as? String)!)! as URL)! as Data)
-        cell.publishedAtLabel.text = videoDetails["publishedAt" as NSObject] as? String
+        cell.videoNameLabel.text = videoDetails["title"] as? String
+        cell.thumbnailImageView.image = UIImage(data: NSData(contentsOf: NSURL(string: (videoDetails["thumbnail"] as? String)!)! as URL)! as Data)
+        cell.publishedAtLabel.text = videoDetails["publishedAt"] as? String
         
         return cell
     }

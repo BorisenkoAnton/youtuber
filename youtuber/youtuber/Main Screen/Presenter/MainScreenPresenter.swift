@@ -26,23 +26,23 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
                 
                 // Convert the JSON data to a dictionary
                 do {
-                    let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<NSObject, Any>
+                    let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
                     
                     // Get all search result items ("items" array).
-                    let items: Array<Dictionary<NSObject, Any>> = resultDictionary["items" as NSObject] as! Array<Dictionary<NSObject, Any>>
+                    let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
                     
-                    var videosArray = Array<Dictionary<NSObject, Any>>()
+                    var videosArray = Array<Dictionary<String, Any>>()
                     
                     for i in 0..<(items.count) {
-                        let snippetDict = items[i]["snippet" as NSObject] as! Dictionary<NSObject, AnyObject>
+                        let snippetDict = items[i]["snippet"] as! Dictionary<String, Any>
                         
-                        var videoDetailsDict = Dictionary<NSObject, Any>()
+                        var videoDetailsDict = Dictionary<String, Any>()
                         
-                        videoDetailsDict["title" as NSObject] = snippetDict["title" as NSObject]
-                        videoDetailsDict["publishedAt" as NSObject] = self.formatDateString(dateString: snippetDict["publishedAt" as NSObject] as! String)
-                        videoDetailsDict["description" as NSObject] = snippetDict["description" as NSObject]
-                        videoDetailsDict["thumbnail" as NSObject] = ((snippetDict["thumbnails" as NSObject] as! Dictionary<NSObject, AnyObject>)["default" as NSObject] as! Dictionary<NSObject, AnyObject>)["url" as NSObject]
-                        videoDetailsDict["videoID" as NSObject] = (items[i]["id" as NSObject] as! Dictionary<NSObject, AnyObject>)["videoId" as NSObject]
+                        videoDetailsDict["title"] = snippetDict["title"]
+                        videoDetailsDict["publishedAt"] = self.formatDateString(dateString: snippetDict["publishedAt"] as! String)
+                        videoDetailsDict["description"] = snippetDict["description"]
+                        videoDetailsDict["thumbnail"] = ((snippetDict["thumbnails"] as! Dictionary<String, Any>)["default"] as! Dictionary<String, Any>)["url"]
+                        videoDetailsDict["videoID"] = (items[i]["id"] as! Dictionary<String, Any>)["videoId"]
                         
                         videosArray.append(videoDetailsDict)
                     }
