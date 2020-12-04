@@ -31,7 +31,9 @@ class MainScreenViewController: UIViewController {
         
         if segue.identifier == "idPlayerSegue" && selectedVideoIndex != nil {
             let playerViewController = segue.destination as! PlayerViewController
+            
             playerViewController.videoID = (videosArray[selectedVideoIndex!]["videoID" as NSObject] as! String)
+            playerViewController.videoDescription = videosArray[selectedVideoIndex!]["description" as NSObject] as? String
         }
     }
 }
@@ -73,6 +75,7 @@ extension MainScreenViewController: UITableViewDataSource {
         
         cell.videoNameLabel.text = videoDetails["title" as NSObject] as? String
         cell.thumbnailImageView.image = UIImage(data: NSData(contentsOf: NSURL(string: (videoDetails["thumbnail" as NSObject] as? String)!)! as URL)! as Data)
+        cell.publishedAtLabel.text = videoDetails["publishedAt" as NSObject] as? String
         
         return cell
     }

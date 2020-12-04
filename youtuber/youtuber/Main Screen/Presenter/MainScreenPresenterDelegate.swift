@@ -12,4 +12,5 @@ protocol MainScreenPresenterDelegate {
     
     func setViewDelegate(delegate: MainScreenViewControllerDelegate)
     func fetchVideos(urlString: String)
+    func formatDateString(dateString: String) -> String
 }

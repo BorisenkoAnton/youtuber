@@ -36,9 +36,11 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
                     for i in 0..<(items.count) {
                         let snippetDict = items[i]["snippet" as NSObject] as! Dictionary<NSObject, AnyObject>
                         
-                        var videoDetailsDict = Dictionary<NSObject, AnyObject>()
+                        var videoDetailsDict = Dictionary<NSObject, Any>()
                         
                         videoDetailsDict["title" as NSObject] = snippetDict["title" as NSObject]
+                        videoDetailsDict["publishedAt" as NSObject] = self.formatDateString(dateString: snippetDict["publishedAt" as NSObject] as! String)
+                        videoDetailsDict["description" as NSObject] = snippetDict["description" as NSObject]
                         videoDetailsDict["thumbnail" as NSObject] = ((snippetDict["thumbnails" as NSObject] as! Dictionary<NSObject, AnyObject>)["default" as NSObject] as! Dictionary<NSObject, AnyObject>)["url" as NSObject]
                         videoDetailsDict["videoID" as NSObject] = (items[i]["id" as NSObject] as! Dictionary<NSObject, AnyObject>)["videoId" as NSObject]
                         
@@ -51,5 +53,19 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
                 }
             }
         }
+    }
+    
+    
+    func formatDateString(dateString: String) -> String {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let date = dateFormatter.date(from: dateString)!
+        
+        dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
+        
+        return dateFormatter.string(from: date)
     }
 }
