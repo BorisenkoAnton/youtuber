@@ -38,24 +38,37 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="143" height="100"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9N-to-BS8">
-                                                    <rect key="frame" x="151" y="0.0" width="223" height="100"/>
+                                                    <rect key="frame" x="151" y="0.0" width="223" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="75" id="CL7-Ej-QVZ"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abD-JI-OgE">
+                                                    <rect key="frame" x="151" y="79" width="223" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="bx9-qz-k1H" firstAttribute="leading" secondItem="GH2-cl-FZl" secondAttribute="leading" id="5Vr-ov-rB7"/>
+                                                <constraint firstAttribute="bottom" secondItem="abD-JI-OgE" secondAttribute="bottom" id="Bue-56-sJh"/>
                                                 <constraint firstItem="q9N-to-BS8" firstAttribute="top" secondItem="GH2-cl-FZl" secondAttribute="top" id="RZ0-bd-K0e"/>
                                                 <constraint firstItem="bx9-qz-k1H" firstAttribute="top" secondItem="GH2-cl-FZl" secondAttribute="top" id="S8b-7d-OnM"/>
                                                 <constraint firstAttribute="bottom" secondItem="bx9-qz-k1H" secondAttribute="bottom" id="TaR-b2-Mfp"/>
+                                                <constraint firstItem="abD-JI-OgE" firstAttribute="leading" secondItem="bx9-qz-k1H" secondAttribute="trailing" constant="8" id="Y14-wm-Qgj"/>
                                                 <constraint firstItem="bx9-qz-k1H" firstAttribute="width" secondItem="GH2-cl-FZl" secondAttribute="width" multiplier="0.382353" id="bSB-M1-rfy"/>
                                                 <constraint firstAttribute="trailing" secondItem="q9N-to-BS8" secondAttribute="trailing" id="dHa-aU-Fqi"/>
                                                 <constraint firstItem="q9N-to-BS8" firstAttribute="leading" secondItem="bx9-qz-k1H" secondAttribute="trailing" constant="8" id="kKe-QG-cWW"/>
-                                                <constraint firstAttribute="bottom" secondItem="q9N-to-BS8" secondAttribute="bottom" id="uR5-sK-j2p"/>
+                                                <constraint firstAttribute="trailing" secondItem="abD-JI-OgE" secondAttribute="trailing" id="mEv-qe-esf"/>
+                                                <constraint firstItem="abD-JI-OgE" firstAttribute="top" secondItem="q9N-to-BS8" secondAttribute="bottom" constant="4" id="ulR-rR-7yc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="publishedAtLabel" destination="abD-JI-OgE" id="knX-Ik-eyU"/>
                                             <outlet property="thumbnailImageView" destination="bx9-qz-k1H" id="gjQ-Rr-fSU"/>
                                             <outlet property="videoNameLabel" destination="q9N-to-BS8" id="OgL-28-zvI"/>
                                         </connections>
@@ -89,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dK1-kz-XfZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039" y="123"/>
+            <point key="canvasLocation" x="1037.68115942029" y="122.54464285714285"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="Zn9-C8-bNp">
@@ -103,6 +116,13 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="212"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywY-C6-Hbc">
+                                <rect key="frame" x="20" y="308" width="374" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -116,6 +136,7 @@
                     <navigationItem key="navigationItem" id="dNT-wM-qrX"/>
                     <connections>
                         <outlet property="player" destination="slO-4S-0vP" id="rI7-gf-GC7"/>
+                        <outlet property="videoDescriptionLabel" destination="ywY-C6-Hbc" id="R8h-pT-cGz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxI-9y-hrK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
