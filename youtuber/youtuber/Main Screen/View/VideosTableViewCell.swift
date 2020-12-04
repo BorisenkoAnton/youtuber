@@ -12,4 +12,5 @@ class VideosTableViewCell: UITableViewCell {
 
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var videoNameLabel: UILabel!
+    @IBOutlet weak var publishedAtLabel: UILabel!
 }
