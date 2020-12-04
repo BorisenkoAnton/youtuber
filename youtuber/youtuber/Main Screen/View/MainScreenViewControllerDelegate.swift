@@ -11,4 +11,5 @@ import Foundation
 protocol MainScreenViewControllerDelegate: class {
     
     func setMainScreenPresenterDelegate(delegate: MainScreenPresenterDelegate)
+    func setVideos(videos: Array<Dictionary<NSObject, Any>>)
 }
