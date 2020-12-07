@@ -10,6 +10,7 @@
 		B42C5797257926D400BE586E /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C5796257926D400BE586E /* MainScreenPresenter.swift */; };
 		B42C579A257926EE00BE586E /* MainScreenPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C5799257926EE00BE586E /* MainScreenPresenterDelegate.swift */; };
 		B42C579D2579275300BE586E /* MainScreenViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C579C2579275300BE586E /* MainScreenViewControllerDelegate.swift */; };
+		B434AD69257E53B6009B9586 /* Notification.Name+signInGoogleCompleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = B434AD68257E53B6009B9586 /* Notification.Name+signInGoogleCompleted.swift */; };
 		B45844A025792EFD00BBDD7D /* APIConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B458449F25792EFD00BBDD7D /* APIConfig.plist */; };
 		B45F23E4257A5D43007E7B6F /* PlayerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F23E3257A5D43007E7B6F /* PlayerViewControllerDelegate.swift */; };
 		B45F23E6257A5DE5007E7B6F /* PlayerPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F23E5257A5DE5007E7B6F /* PlayerPresenterDelegate.swift */; };
@@ -32,6 +33,7 @@
 		B42C5796257926D400BE586E /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		B42C5799257926EE00BE586E /* MainScreenPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenterDelegate.swift; sourceTree = "<group>"; };
 		B42C579C2579275300BE586E /* MainScreenViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewControllerDelegate.swift; sourceTree = "<group>"; };
+		B434AD68257E53B6009B9586 /* Notification.Name+signInGoogleCompleted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+signInGoogleCompleted.swift"; sourceTree = "<group>"; };
 		B458449F25792EFD00BBDD7D /* APIConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIConfig.plist; sourceTree = "<group>"; };
 		B45F23E3257A5D43007E7B6F /* PlayerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		B45F23E5257A5DE5007E7B6F /* PlayerPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenterDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				B4E1306E25790E18004A84CC /* LaunchScreen.storyboard */,
 				B4E1306325790E17004A84CC /* AppDelegate.swift */,
 				B4E1306525790E17004A84CC /* SceneDelegate.swift */,
+				B434AD68257E53B6009B9586 /* Notification.Name+signInGoogleCompleted.swift */,
 				B4E1306C25790E18004A84CC /* Assets.xcassets */,
 				B4E1307125790E18004A84CC /* Info.plist */,
 			);
@@ -189,6 +192,7 @@
 				B4E1305D25790E17004A84CC /* Frameworks */,
 				B4E1305E25790E17004A84CC /* Resources */,
 				918E840FE312159581F7C2D7 /* [CP] Embed Pods Frameworks */,
+				54985F484AD6F61266E572FA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,6 +251,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		54985F484AD6F61266E572FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-youtuber/Pods-youtuber-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-youtuber/Pods-youtuber-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-youtuber/Pods-youtuber-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5AF0D61A61F35471454E956D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +325,7 @@
 				B4A94740257A1FCE00B14195 /* PlayerViewController.swift in Sources */,
 				B4E1306425790E17004A84CC /* AppDelegate.swift in Sources */,
 				B4E1306625790E17004A84CC /* SceneDelegate.swift in Sources */,
+				B434AD69257E53B6009B9586 /* Notification.Name+signInGoogleCompleted.swift in Sources */,
 				B42C5797257926D400BE586E /* MainScreenPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

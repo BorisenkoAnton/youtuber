@@ -93,9 +93,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ghL-Sg-sZD"/>
                     </view>
-                    <navigationItem key="navigationItem" id="SzO-Ly-nsa"/>
+                    <navigationItem key="navigationItem" id="SzO-Ly-nsa">
+                        <barButtonItem key="rightBarButtonItem" title="Sign in" id="BBM-iO-usm"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchingtextField" destination="awA-u3-EEK" id="g8X-ee-sMV"/>
+                        <outlet property="signButton" destination="BBM-iO-usm" id="2P0-Bp-B2L"/>
                         <outlet property="videosTable" destination="bDO-db-UjY" id="v9o-JA-5ob"/>
                         <segue destination="Vcz-Wy-w7M" kind="show" identifier="idPlayerSegue" id="qvY-bK-aef"/>
                     </connections>
