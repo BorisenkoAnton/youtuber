@@ -7,4 +7,5 @@ target 'youtuber' do
 
   # Pods for youtuber
   pod "youtube-ios-player-helper", "~> 1.0.1"
+  pod 'GoogleSignIn'
 end

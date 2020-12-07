@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class MainScreenViewController: UIViewController {
 
@@ -17,13 +18,13 @@ class MainScreenViewController: UIViewController {
     
     @IBOutlet weak var searchingtextField: UITextField!
     @IBOutlet weak var videosTable: UITableView!
+    @IBOutlet weak var signButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        self.setMainScreenPresenterDelegate(delegate: MainScreenPresenter())
-        self.mainScreenPresenterDelegate?.setViewDelegate(delegate: self)
+        self.configureController()
     }
 
 
@@ -34,6 +35,47 @@ class MainScreenViewController: UIViewController {
             
             playerViewController.videoID = (videosArray[selectedVideoIndex!]["videoID"] as! String)
         }
+    }
+    
+    
+    private func configureController() {
+        
+        self.setMainScreenPresenterDelegate(delegate: MainScreenPresenter())
+        self.mainScreenPresenterDelegate?.setViewDelegate(delegate: self)
+        
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        
+        signButton.target = self
+        signButton.action = #selector(signButtonPressed(_:))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidSignInGoogle(_:)), name: .signInGoogleCompleted, object: nil)
+    }
+    
+    
+    private func updateSignButtonTitle() {
+    
+        if let user = GIDSignIn.sharedInstance()?.currentUser {
+            signButton.title = "Sign out"
+        } else {
+            signButton.title = "Sign in"
+        }
+    }
+    
+    
+    @objc func signButtonPressed(_ sender: UIBarButtonItem) {
+        
+        if self.signButton.title == "Sign in" {
+            GIDSignIn.sharedInstance()?.signIn()
+        } else {
+            GIDSignIn.sharedInstance()?.signOut()
+            updateSignButtonTitle()
+        }
+    }
+    
+    
+    @objc func userDidSignInGoogle(_ notification: Notification) {
+        
+            updateSignButtonTitle()
     }
 }
 
