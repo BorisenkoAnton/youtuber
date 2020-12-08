@@ -11,5 +11,5 @@ import Foundation
 protocol PlayerPresenterDelegate {
     
     func setViewDelegate(delegate: PlayerViewControllerDelegate)
-    func getFullDescriptionForVideo(videoID: String)
+    func getVideoInfo(videoID: String)
 }

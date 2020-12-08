@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoogleSignIn
 
 class PlayerPresenter: PlayerPresenterDelegate {
     
@@ -19,9 +20,7 @@ class PlayerPresenter: PlayerPresenterDelegate {
     }
     
     
-    func getFullDescriptionForVideo(videoID: String) {
-        
-        // https://www.googleapis.com/youtube/v3/videos?part=snippet&id={VIDEO_ID}&key={YOUR_API_KEY}
+    func getVideoInfo(videoID: String){
         
         guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return }
            
@@ -29,28 +28,32 @@ class PlayerPresenter: PlayerPresenterDelegate {
            
         let apiKey = apiConfigAsDictionary!["API key"]
            
-        let urlString: String = ("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=\(videoID)&key=" + (apiKey as! String))//.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let urlString: String = ("https://www.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&id=\(videoID)&key=" + (apiKey as! String))
         
         if let url = URL(string: urlString) {
             NetworkManager.getData(url: url) { (data, response, error) in
                 
-                // Convert the JSON data to a dictionary
                 do {
                     let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
                     
-                    // Get all search result items ("items" array).
                     let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
                     
                     let snippetDict = items[0]["snippet"] as! Dictionary<String, Any>
-                    
+                    let statsDict = items[0]["statistics"] as! Dictionary<String, Any>
+
                     let description = snippetDict["description"] as! String
-                    
-                    self.viewDelegate?.setDescription(description: description)
+                    let viewCount = UInt(statsDict["viewCount"] as! String)
+                    let likeCount = UInt(statsDict["likeCount"] as! String)
+                    let dislikeCount = UInt(statsDict["dislikeCount"] as! String)
+
+                    let videoInfo = VideoInfo(description: description, viewCount: viewCount, likeCount: likeCount, dislikeCount: dislikeCount)
+
+                    self.viewDelegate?.setVideoInfo(videoInfo: videoInfo)
                 } catch {
                     
                 }
             }
         }
-        
     }
+
 }

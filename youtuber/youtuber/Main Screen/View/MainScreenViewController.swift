@@ -44,6 +44,7 @@ class MainScreenViewController: UIViewController {
         self.mainScreenPresenterDelegate?.setViewDelegate(delegate: self)
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.scopes = ["https://www.googleapis.com/auth/youtube"]
         
         signButton.target = self
         signButton.action = #selector(signButtonPressed(_:))
