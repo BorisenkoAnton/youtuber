@@ -12,6 +12,5 @@ class CommentsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var commentAuthorNameLabel: UILabel!
     @IBOutlet weak var commentPublicationDateLabel: UILabel!
-    @IBOutlet weak var commentTextLabel: UILabel!
-    
+    @IBOutlet weak var commentTextTextView: UITextView!
 }
