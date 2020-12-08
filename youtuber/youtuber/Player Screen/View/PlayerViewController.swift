@@ -16,7 +16,11 @@ class PlayerViewController: UIViewController {
     var videoID: String!
     
     @IBOutlet weak var player: YTPlayerView!
-    @IBOutlet weak var videoDescriptionLabel: UILabel!
+    @IBOutlet weak var viewsCountlabel: UILabel!
+    @IBOutlet weak var likesCountLabel: UILabel!
+    @IBOutlet weak var dislikesCountLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +29,7 @@ class PlayerViewController: UIViewController {
         
         self.playerPresenterDelegate?.setViewDelegate(delegate: self)
         
-        self.playerPresenterDelegate?.getFullDescriptionForVideo(videoID: self.videoID)
+        self.playerPresenterDelegate?.getVideoInfo(videoID: self.videoID)
         
         self.player.load(withVideoId: videoID)
     }
@@ -40,10 +44,11 @@ extension PlayerViewController: PlayerViewControllerDelegate {
     }
     
     
-    func setDescription(description: String) {
+    func setVideoInfo(videoInfo: VideoInfo) {
         
-        self.videoDescriptionLabel.text = description
-        
-        self.videoDescriptionLabel.sizeToFit()
+        self.viewsCountlabel.text = (videoInfo.viewCount != nil) ? ("Views: " + String(videoInfo.viewCount!)) : ""
+        self.likesCountLabel.text = (videoInfo.viewCount != nil) ? String(videoInfo.likeCount!) : ""
+        self.dislikesCountLabel.text =  (videoInfo.viewCount != nil) ? String(videoInfo.dislikeCount!) : ""
+        self.descriptionTextView.text = videoInfo.description
     }
 }

@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+struct VideoInfo {
+    var description: String?
+    var viewCount: UInt?
+    var likeCount: UInt?
+    var dislikeCount: UInt?
+}
