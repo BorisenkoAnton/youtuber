@@ -12,4 +12,5 @@ protocol PlayerPresenterDelegate {
     
     func setViewDelegate(delegate: PlayerViewControllerDelegate)
     func getVideoInfo(videoID: String)
+    func getComments(videoID: String)
 }

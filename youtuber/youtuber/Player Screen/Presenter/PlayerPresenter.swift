@@ -55,5 +55,48 @@ class PlayerPresenter: PlayerPresenterDelegate {
             }
         }
     }
+    
+    
+    func getComments(videoID: String) {
+        
+        guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return }
+           
+        let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
+           
+        let apiKey = apiConfigAsDictionary!["API key"]
+        
+        let urlString = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=\(videoID)&maxResults=50&key=" + (apiKey as! String)
+        
+        if let url = URL(string: urlString) {
+            NetworkManager.getData(url: url) { (data, response, error) in
+                
+                do {
+                    let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
+                    
+                    let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
+                    
+                    var comments = [CommentInfo]()
+                    
+                    for item in items {
+                        let snippetDict = item["snippet"] as! Dictionary<String, Any>
+                        let topLevelcomment = snippetDict["topLevelComment"] as! Dictionary<String, Any>
+                        let topLevelcommentSnippet = topLevelcomment["snippet"] as! Dictionary<String, Any>
+
+                        let author = topLevelcommentSnippet["authorDisplayName"] as! String
+                        let date = topLevelcommentSnippet["publishedAt"] as! String
+                        let text = topLevelcommentSnippet["textDisplay"] as! String
+
+                        let comment = CommentInfo(author: author, date: date, text: text)
+
+                        comments.append(comment)
+                    }
+                    
+                    self.viewDelegate?.setComments(comments: comments)
+                } catch {
+                    
+                }
+            }
+        }
+    }
 
 }
