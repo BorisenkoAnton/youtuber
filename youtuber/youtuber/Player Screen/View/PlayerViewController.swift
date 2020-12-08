@@ -14,6 +14,7 @@ class PlayerViewController: UIViewController {
 
     var playerPresenterDelegate: PlayerPresenterDelegate?
     var videoID: String!
+    var comments = [CommentInfo]()
     
     @IBOutlet weak var player: YTPlayerView!
     @IBOutlet weak var viewsCountlabel: UILabel!
@@ -30,9 +31,11 @@ class PlayerViewController: UIViewController {
         
         self.playerPresenterDelegate?.setViewDelegate(delegate: self)
         
+        self.player.load(withVideoId: videoID)
+        
         self.playerPresenterDelegate?.getVideoInfo(videoID: self.videoID)
         
-        self.player.load(withVideoId: videoID)
+        self.playerPresenterDelegate?.getComments(videoID: self.videoID)
     }
 }
 
@@ -52,23 +55,25 @@ extension PlayerViewController: PlayerViewControllerDelegate {
         self.dislikesCountLabel.text =  (videoInfo.viewCount != nil) ? String(videoInfo.dislikeCount!) : ""
         self.descriptionTextView.text = videoInfo.description
     }
-}
-
-
-extension PlayerViewController: UITableViewDelegate {
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//
-//        return 430
-//    }
+    
+    func setComments(comments: [CommentInfo]) {
+        
+        self.comments = comments
+        
+        self.commentsTable.reloadData()
+    }
 }
+
+
+extension PlayerViewController: UITableViewDelegate {}
 
 
 extension PlayerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 2
+        return self.comments.count
     }
     
     
@@ -76,7 +81,11 @@ extension PlayerViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentsTableViewCell
         
-        cell.commentTextLabel.text = "iouheorgithiortgheoirtuhc \n goirutgheirutgheo \n iruthgmvoeirjbgcoriutjg"
+        let comment = self.comments[indexPath.row]
+        
+        cell.commentAuthorNameLabel.text = comment.author
+        cell.commentPublicationDateLabel.text = comment.date
+        cell.commentTextTextView.text = comment.text
         
         return cell
     }
