@@ -14,6 +14,7 @@
 		B45844A025792EFD00BBDD7D /* APIConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B458449F25792EFD00BBDD7D /* APIConfig.plist */; };
 		B45E3D0A257F6B1600C4B63C /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45E3D09257F6B1600C4B63C /* VideoInfo.swift */; };
 		B45E3D0C257F8C7C00C4B63C /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45E3D0B257F8C7C00C4B63C /* CommentsTableViewCell.swift */; };
+		B45E3D0E257FACD200C4B63C /* CommentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45E3D0D257FACD200C4B63C /* CommentInfo.swift */; };
 		B45F23E4257A5D43007E7B6F /* PlayerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F23E3257A5D43007E7B6F /* PlayerViewControllerDelegate.swift */; };
 		B45F23E6257A5DE5007E7B6F /* PlayerPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F23E5257A5DE5007E7B6F /* PlayerPresenterDelegate.swift */; };
 		B45F23E8257A5DF4007E7B6F /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F23E7257A5DF4007E7B6F /* PlayerPresenter.swift */; };
@@ -39,6 +40,7 @@
 		B458449F25792EFD00BBDD7D /* APIConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIConfig.plist; sourceTree = "<group>"; };
 		B45E3D09257F6B1600C4B63C /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		B45E3D0B257F8C7C00C4B63C /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
+		B45E3D0D257FACD200C4B63C /* CommentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInfo.swift; sourceTree = "<group>"; };
 		B45F23E3257A5D43007E7B6F /* PlayerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		B45F23E5257A5DE5007E7B6F /* PlayerPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenterDelegate.swift; sourceTree = "<group>"; };
 		B45F23E7257A5DF4007E7B6F /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				B45F23E1257A5D25007E7B6F /* View */,
 				B45F23E2257A5D2A007E7B6F /* Presenter */,
 				B45E3D09257F6B1600C4B63C /* VideoInfo.swift */,
+				B45E3D0D257FACD200C4B63C /* CommentInfo.swift */,
 			);
 			path = "Player Screen";
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				B4E1306825790E17004A84CC /* MainScreenViewController.swift in Sources */,
 				B4A94740257A1FCE00B14195 /* PlayerViewController.swift in Sources */,
 				B4E1306425790E17004A84CC /* AppDelegate.swift in Sources */,
+				B45E3D0E257FACD200C4B63C /* CommentInfo.swift in Sources */,
 				B4E1306625790E17004A84CC /* SceneDelegate.swift in Sources */,
 				B434AD69257E53B6009B9586 /* Notification.Name+signInGoogleCompleted.swift in Sources */,
 				B42C5797257926D400BE586E /* MainScreenPresenter.swift in Sources */,
