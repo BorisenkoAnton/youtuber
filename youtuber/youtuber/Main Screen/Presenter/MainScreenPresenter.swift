@@ -19,7 +19,15 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
     }
     
     
-    func fetchVideos(urlString: String) {
+    func fetchVideos(searchingText: String) {
+        
+        guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return }
+           
+        let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
+
+        let apiKey = apiConfigAsDictionary!["API key"]
+
+        let urlString: String = ("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=\(searchingText)&type=video&key=" + (apiKey as! String)).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         if let url = URL(string: urlString) {
             NetworkManager.getData(url: url) { (data, response, error) in

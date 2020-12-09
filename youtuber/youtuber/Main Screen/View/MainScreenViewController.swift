@@ -55,7 +55,7 @@ class MainScreenViewController: UIViewController {
     
     private func updateSignButtonTitle() {
     
-        if let user = GIDSignIn.sharedInstance()?.currentUser {
+        if GIDSignIn.sharedInstance()?.currentUser != nil {
             signButton.title = "Sign out"
         } else {
             signButton.title = "Sign in"
@@ -81,6 +81,8 @@ class MainScreenViewController: UIViewController {
 }
 
 
+// MARK: - extensions
+
 extension MainScreenViewController: MainScreenViewControllerDelegate {
     
     func setMainScreenPresenterDelegate(delegate: MainScreenPresenterDelegate) {
@@ -97,6 +99,8 @@ extension MainScreenViewController: MainScreenViewControllerDelegate {
     }
 }
 
+
+// MARK: Table View Delegate and Data Soure
 
 extension MainScreenViewController: UITableViewDelegate {}
 
@@ -132,6 +136,8 @@ extension MainScreenViewController: UITableViewDataSource {
 }
 
 
+// MARK: Text Field Delegate
+
 extension MainScreenViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -139,18 +145,9 @@ extension MainScreenViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
 
         if self.searchingtextField.text != nil {
-            
-            guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return false }
-            
-            let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
-            
-            let apiKey = apiConfigAsDictionary!["API key"]
-            
             videosArray.removeAll(keepingCapacity: false)
-         
-            let urlString: String = ("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=\(self.searchingtextField.text!)&type=video&key=" + (apiKey as! String)).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             
-            self.mainScreenPresenterDelegate?.fetchVideos(urlString: urlString)
+            self.mainScreenPresenterDelegate?.fetchVideos(searchingText: self.searchingtextField.text!)
         }
         return true
     }

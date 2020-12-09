@@ -11,6 +11,6 @@ import Foundation
 protocol MainScreenPresenterDelegate {
     
     func setViewDelegate(delegate: MainScreenViewControllerDelegate)
-    func fetchVideos(urlString: String)
+    func fetchVideos(searchingText: String)
     func formatDateString(dateString: String) -> String
 }

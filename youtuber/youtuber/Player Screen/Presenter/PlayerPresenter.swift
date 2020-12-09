@@ -12,6 +12,13 @@ import GoogleSignIn
 class PlayerPresenter: PlayerPresenterDelegate {
     
     weak private var viewDelegate: PlayerViewControllerDelegate?
+    private var apiKey: String? {
+        guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return nil }
+           
+        let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
+           
+        return apiConfigAsDictionary!["API key"] as? String
+    }
     
     
     func setViewDelegate(delegate: PlayerViewControllerDelegate) {
@@ -22,35 +29,31 @@ class PlayerPresenter: PlayerPresenterDelegate {
     
     func getVideoInfo(videoID: String){
         
-        guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return }
-           
-        let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
-           
-        let apiKey = apiConfigAsDictionary!["API key"]
-           
-        let urlString: String = ("https://www.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&id=\(videoID)&key=" + (apiKey as! String))
-        
-        if let url = URL(string: urlString) {
-            NetworkManager.getData(url: url) { (data, response, error) in
-                
-                do {
-                    let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
+        if let apiKey = apiKey {
+            let urlString: String = "https://www.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&id=\(videoID)&key=\(apiKey)"
+            
+            if let url = URL(string: urlString) {
+                NetworkManager.getData(url: url) { (data, response, error) in
                     
-                    let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
-                    
-                    let snippetDict = items[0]["snippet"] as! Dictionary<String, Any>
-                    let statsDict = items[0]["statistics"] as! Dictionary<String, Any>
+                    do {
+                        let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
+                        
+                        let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
+                        
+                        let snippetDict = items[0]["snippet"] as! Dictionary<String, Any>
+                        let statsDict = items[0]["statistics"] as! Dictionary<String, Any>
 
-                    let description = snippetDict["description"] as! String
-                    let viewCount = UInt(statsDict["viewCount"] as! String)
-                    let likeCount = UInt(statsDict["likeCount"] as! String)
-                    let dislikeCount = UInt(statsDict["dislikeCount"] as! String)
+                        let description = snippetDict["description"] as! String
+                        let viewCount = UInt(statsDict["viewCount"] as! String)
+                        let likeCount = UInt(statsDict["likeCount"] as! String)
+                        let dislikeCount = UInt(statsDict["dislikeCount"] as! String)
 
-                    let videoInfo = VideoInfo(description: description, viewCount: viewCount, likeCount: likeCount, dislikeCount: dislikeCount)
+                        let videoInfo = VideoInfo(description: description, viewCount: viewCount, likeCount: likeCount, dislikeCount: dislikeCount)
 
-                    self.viewDelegate?.setVideoInfo(videoInfo: videoInfo)
-                } catch {
-                    
+                        self.viewDelegate?.setVideoInfo(videoInfo: videoInfo)
+                    } catch {
+                        
+                    }
                 }
             }
         }
@@ -59,41 +62,39 @@ class PlayerPresenter: PlayerPresenterDelegate {
     
     func getComments(videoID: String) {
         
-        guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return }
-           
-        let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
-           
-        let apiKey = apiConfigAsDictionary!["API key"]
-        
-        let urlString = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=\(videoID)&maxResults=50&key=" + (apiKey as! String)
-        
-        if let url = URL(string: urlString) {
-            NetworkManager.getData(url: url) { (data, response, error) in
-                
-                do {
-                    let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
+        if let apiKey = apiKey {
+            let urlString = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=\(videoID)&maxResults=50&key=\(apiKey)"
+            
+            if let url = URL(string: urlString) {
+                NetworkManager.getData(url: url) { (data, response, error) in
                     
-                    let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
-                    
-                    var comments = [CommentInfo]()
-                    
-                    for item in items {
-                        let snippetDict = item["snippet"] as! Dictionary<String, Any>
-                        let topLevelcomment = snippetDict["topLevelComment"] as! Dictionary<String, Any>
-                        let topLevelcommentSnippet = topLevelcomment["snippet"] as! Dictionary<String, Any>
+                    do {
+                        let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
+                        
+                        if resultDictionary.keys.contains("items") {
+                            let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
+                            
+                            var comments = [CommentInfo]()
+                            
+                            for item in items {
+                                let snippetDict = item["snippet"] as! Dictionary<String, Any>
+                                let topLevelcomment = snippetDict["topLevelComment"] as! Dictionary<String, Any>
+                                let topLevelcommentSnippet = topLevelcomment["snippet"] as! Dictionary<String, Any>
 
-                        let author = topLevelcommentSnippet["authorDisplayName"] as! String
-                        let date = topLevelcommentSnippet["publishedAt"] as! String
-                        let text = topLevelcommentSnippet["textDisplay"] as! String
+                                let author = topLevelcommentSnippet["authorDisplayName"] as! String
+                                let date = topLevelcommentSnippet["publishedAt"] as! String
+                                let text = topLevelcommentSnippet["textDisplay"] as! String
 
-                        let comment = CommentInfo(author: author, date: date, text: text)
+                                let comment = CommentInfo(author: author, date: date, text: text)
 
-                        comments.append(comment)
+                                comments.append(comment)
+                            }
+                            
+                            self.viewDelegate?.setComments(comments: comments)
+                        }
+                    } catch {
+                        
                     }
-                    
-                    self.viewDelegate?.setComments(comments: comments)
-                } catch {
-                    
                 }
             }
         }

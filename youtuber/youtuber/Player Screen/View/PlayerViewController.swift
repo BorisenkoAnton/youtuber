@@ -25,6 +25,7 @@ class PlayerViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         self.setPlayerPresenterDelegate(delegate: PlayerPresenter())
@@ -39,6 +40,8 @@ class PlayerViewController: UIViewController {
     }
 }
 
+
+// MARK: - extensions
 
 extension PlayerViewController: PlayerViewControllerDelegate {
     
@@ -65,6 +68,8 @@ extension PlayerViewController: PlayerViewControllerDelegate {
     }
 }
 
+
+// MARK: Table View Delegate and Data Soure
 
 extension PlayerViewController: UITableViewDelegate {}
 
