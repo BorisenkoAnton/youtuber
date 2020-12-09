@@ -6,11 +6,12 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol PlayerViewControllerDelegate: class {
     
     func setPlayerPresenterDelegate(delegate: PlayerPresenterDelegate)
     func setVideoInfo(videoInfo: VideoInfo)
     func setComments(comments: [CommentInfo])
+    func showAlert(alert: UIAlertController)
 }

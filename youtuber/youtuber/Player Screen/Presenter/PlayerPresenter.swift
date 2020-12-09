@@ -62,16 +62,24 @@ class PlayerPresenter: PlayerPresenterDelegate {
     
     func getComments(videoID: String) {
         
-        if let apiKey = apiKey {
-            let urlString = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=\(videoID)&maxResults=50&key=\(apiKey)"
+        if  GIDSignIn.sharedInstance()?.currentUser == nil {
+            let alert = AlertHelper.createAlert(title: "Unable to get comments", message: "To view comments log in, please", preferredStyle: .alert)
             
-            if let url = URL(string: urlString) {
-                NetworkManager.getData(url: url) { (data, response, error) in
-                    
-                    do {
-                        let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
+            self.viewDelegate?.showAlert(alert: alert)
+        } else if (GIDSignIn.sharedInstance()?.currentUser.authentication.accessTokenExpirationDate)! < Date() {
+            let alert = AlertHelper.createAlert(title: "Unable to get comments", message: "Access token expired. To view comments re-login, please", preferredStyle: .alert)
+            
+            self.viewDelegate?.showAlert(alert: alert)
+        } else {
+            if let apiKey = apiKey {
+                let urlString = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=\(videoID)&maxResults=50&key=\(apiKey)"
+                
+                if let url = URL(string: urlString) {
+                    NetworkManager.getData(url: url) { (data, response, error) in
                         
-                        if resultDictionary.keys.contains("items") {
+                        do {
+                            let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
+
                             let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
                             
                             var comments = [CommentInfo]()
@@ -91,9 +99,10 @@ class PlayerPresenter: PlayerPresenterDelegate {
                             }
                             
                             self.viewDelegate?.setComments(comments: comments)
+                            
+                        } catch {
+                            
                         }
-                    } catch {
-                        
                     }
                 }
             }
