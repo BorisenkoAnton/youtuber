@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B41C69BE258258D600D39C00 /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C69BD258258D600D39C00 /* NetworkConfiguration.swift */; };
 		B42C5797257926D400BE586E /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C5796257926D400BE586E /* MainScreenPresenter.swift */; };
 		B42C579A257926EE00BE586E /* MainScreenPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C5799257926EE00BE586E /* MainScreenPresenterDelegate.swift */; };
 		B42C579D2579275300BE586E /* MainScreenViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C579C2579275300BE586E /* MainScreenViewControllerDelegate.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		2C2620C16AE4070E7E3F2875 /* Pods_youtuber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_youtuber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A5B4BD7FA057FA06216884 /* Pods-youtuber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-youtuber.release.xcconfig"; path = "Target Support Files/Pods-youtuber/Pods-youtuber.release.xcconfig"; sourceTree = "<group>"; };
+		B41C69BD258258D600D39C00 /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		B42C5796257926D400BE586E /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		B42C5799257926EE00BE586E /* MainScreenPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenterDelegate.swift; sourceTree = "<group>"; };
 		B42C579C2579275300BE586E /* MainScreenViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				B479566125791D4D001A0C4E /* NetworkManager.swift */,
 				B458449F25792EFD00BBDD7D /* APIConfig.plist */,
+				B41C69BD258258D600D39C00 /* NetworkConfiguration.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				B4A9473D257A142C00B14195 /* VideosTableViewCell.swift in Sources */,
 				B45F23E4257A5D43007E7B6F /* PlayerViewControllerDelegate.swift in Sources */,
 				B42C579A257926EE00BE586E /* MainScreenPresenterDelegate.swift in Sources */,
+				B41C69BE258258D600D39C00 /* NetworkConfiguration.swift in Sources */,
 				B45F23E6257A5DE5007E7B6F /* PlayerPresenterDelegate.swift in Sources */,
 				B479566225791D4D001A0C4E /* NetworkManager.swift in Sources */,
 				B45E3D0C257F8C7C00C4B63C /* CommentsTableViewCell.swift in Sources */,
