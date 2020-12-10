@@ -97,6 +97,12 @@ extension MainScreenViewController: MainScreenViewControllerDelegate {
         
         self.videosTable.reloadData()
     }
+    
+    
+    func showAlert(alert: UIAlertController) {
+        
+        self.present(alert, animated: true)
+    }
 }
 
 
