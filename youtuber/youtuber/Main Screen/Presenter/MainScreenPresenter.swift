@@ -16,18 +16,16 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
     func setViewDelegate(delegate: MainScreenViewControllerDelegate) {
         
         self.viewDelegate = delegate
+        
+        initializeNetworkConfigurationValues()
     }
     
     
     func fetchVideos(searchingText: String) {
-        
-        guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return }
-           
-        let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
 
-        let apiKey = apiConfigAsDictionary!["API key"]
+        let apiKey = NetworkConfiguration.shared.apiKey
 
-        let urlString: String = ("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=\(searchingText)&type=video&key=" + (apiKey as! String)).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let urlString: String = ("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=\(searchingText)&type=video&key=\(apiKey ?? "")").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         if let url = URL(string: urlString) {
             NetworkManager.getData(url: url) { (data, response, error) in
@@ -76,5 +74,18 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
         dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
         
         return dateFormatter.string(from: date)
+    }
+    
+    private func initializeNetworkConfigurationValues() {
+        
+        guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return }
+           
+        let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
+
+        let apiKey: String = apiConfigAsDictionary!["API key"] as! String
+        let clientID: String = apiConfigAsDictionary!["Client ID"] as! String
+        
+        NetworkConfiguration.shared.apiKey = apiKey
+        NetworkConfiguration.shared.clientID = clientID
     }
 }

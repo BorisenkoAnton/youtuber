@@ -12,13 +12,6 @@ import GoogleSignIn
 class PlayerPresenter: PlayerPresenterDelegate {
     
     weak private var viewDelegate: PlayerViewControllerDelegate?
-    private var apiKey: String? {
-        guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return nil }
-           
-        let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
-           
-        return apiConfigAsDictionary!["API key"] as? String
-    }
     
     
     func setViewDelegate(delegate: PlayerViewControllerDelegate) {
@@ -29,7 +22,7 @@ class PlayerPresenter: PlayerPresenterDelegate {
     
     func getVideoInfo(videoID: String){
         
-        if let apiKey = apiKey {
+        if let apiKey = NetworkConfiguration.shared.apiKey {
             let urlString: String = "https://www.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&id=\(videoID)&key=\(apiKey)"
             
             if let url = URL(string: urlString) {
@@ -73,7 +66,7 @@ class PlayerPresenter: PlayerPresenterDelegate {
             
             self.viewDelegate?.showAlert(alert: alert)
         } else {
-            if let apiKey = apiKey {
+            if let apiKey = NetworkConfiguration.shared.apiKey {
                 let urlString = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=\(videoID)&maxResults=50&key=\(apiKey)"
                 
                 if let url = URL(string: urlString) {
