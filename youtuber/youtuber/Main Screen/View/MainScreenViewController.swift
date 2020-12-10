@@ -126,8 +126,17 @@ extension MainScreenViewController: UITableViewDataSource {
         let videoDetails = videosArray[indexPath.row]
         
         cell.videoNameLabel.text = videoDetails["title"] as? String
-        cell.thumbnailImageView.image = UIImage(data: NSData(contentsOf: NSURL(string: (videoDetails["thumbnail"] as? String)!)! as URL)! as Data)
         cell.publishedAtLabel.text = videoDetails["publishedAt"] as? String
+        
+        if let imageURL = URL(string: videoDetails["thumbnail"] as! String) {
+            do {
+                let imageData = try Data(contentsOf: imageURL)
+                
+                cell.thumbnailImageView.image = UIImage(data: imageData)
+            } catch {
+                
+            }
+        }
         
         return cell
     }
