@@ -13,7 +13,6 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         guard let path = Bundle.main.path(forResource: "APIConfig", ofType: "plist") else { return true }

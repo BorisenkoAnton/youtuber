@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+struct NetworkConfiguration {
+    
+    static var shared = NetworkConfiguration()
+    
+    var apiKey: String?
+    var clientID: String?
+    
+    private init() {}
+}
