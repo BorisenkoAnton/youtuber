@@ -56,7 +56,9 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
                     
                     self.viewDelegate?.setVideos(videos: videosArray)
                 } catch {
+                    let alert = AlertHelper.createAlert(title: "", message: "Data serializing error", preferredStyle: .alert)
                     
+                    self.viewDelegate?.showAlert(alert: alert)
                 }
             }
         }

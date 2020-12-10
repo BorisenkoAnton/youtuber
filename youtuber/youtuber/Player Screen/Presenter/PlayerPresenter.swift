@@ -52,7 +52,9 @@ class PlayerPresenter: PlayerPresenterDelegate {
 
                         self.viewDelegate?.setVideoInfo(videoInfo: videoInfo)
                     } catch {
+                        let alert = AlertHelper.createAlert(title: "", message: "Data serializing error", preferredStyle: .alert)
                         
+                        self.viewDelegate?.showAlert(alert: alert)
                     }
                 }
             }
@@ -101,7 +103,9 @@ class PlayerPresenter: PlayerPresenterDelegate {
                             self.viewDelegate?.setComments(comments: comments)
                             
                         } catch {
+                            let alert = AlertHelper.createAlert(title: "", message: "Data serializing error", preferredStyle: .alert)
                             
+                            self.viewDelegate?.showAlert(alert: alert)
                         }
                     }
                 }
