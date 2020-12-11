@@ -57,7 +57,7 @@ class PlayerPresenter: PlayerPresenterDelegate {
     
     func getComments(videoID: String) {
         
-        if  GIDSignIn.sharedInstance()?.currentUser == nil {
+        if GIDSignIn.sharedInstance()?.currentUser == nil {
             let alert = AlertHelper.createAlert(title: "Unable to get comments", message: "To view comments log in, please", preferredStyle: .alert)
             
             self.viewDelegate?.showAlert(alert: alert)
@@ -106,4 +106,17 @@ class PlayerPresenter: PlayerPresenterDelegate {
         }
     }
 
+    
+    func rateVideo(videoID: String, rating: String) {
+        
+        if let apiKey = NetworkConfiguration.shared.apiKey {
+            let urlString = "https://www.googleapis.com/youtube/v3/videos/rate?id=\(videoID)&rating=\(rating)&key=\(apiKey)"
+                             
+            if let url = URL(string: urlString) {
+                NetworkManager.postData(url: url) { (data, response, error) in
+                    
+                }
+            }
+        }
+    }
 }

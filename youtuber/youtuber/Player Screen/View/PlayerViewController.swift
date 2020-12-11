@@ -19,7 +19,9 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var player: YTPlayerView!
     @IBOutlet weak var viewsCountlabel: UILabel!
     @IBOutlet weak var likesCountLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var dislikesCountLabel: UILabel!
+    @IBOutlet weak var dislikeButton: UIButton!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var commentsTable: UITableView!
     
@@ -38,6 +40,19 @@ class PlayerViewController: UIViewController {
         
         self.playerPresenterDelegate?.getComments(videoID: self.videoID)
     }
+    
+    
+    @IBAction func setLike(_ sender: Any) {
+        
+        self.playerPresenterDelegate?.rateVideo(videoID: self.videoID, rating: "like")
+    }
+    
+    
+    @IBAction func setDislike(_ sender: Any) {
+        
+        self.playerPresenterDelegate?.rateVideo(videoID: self.videoID, rating: "dislike")
+    }
+    
 }
 
 
