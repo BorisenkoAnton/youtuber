@@ -132,15 +132,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nv4-B1-9hB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="dislike" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nv4-B1-9hB">
                                 <rect key="frame" x="317" y="307" width="77" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-KE-Zky">
-                                <rect key="frame" x="218" y="307" width="77" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-KE-Zky">
+                                <rect key="frame" x="194" y="305" width="77" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -205,6 +205,22 @@
                                     <outlet property="delegate" destination="Vcz-Wy-w7M" id="8kP-UA-oYY"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GV-WS-Yca">
+                                <rect key="frame" x="279" y="305" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="dislike_gray"/>
+                                <connections>
+                                    <action selector="setDislike:" destination="Vcz-Wy-w7M" eventType="touchUpInside" id="eWO-uT-HQU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEG-gT-J71">
+                                <rect key="frame" x="156" y="305" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="like_gray"/>
+                                <connections>
+                                    <action selector="setLike:" destination="Vcz-Wy-w7M" eventType="touchUpInside" id="Ij4-av-Jia"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -231,7 +247,9 @@
                     <connections>
                         <outlet property="commentsTable" destination="7Wq-7E-jGm" id="479-8y-ae5"/>
                         <outlet property="descriptionTextView" destination="8C4-aM-Rqp" id="64v-E2-q9i"/>
+                        <outlet property="dislikeButton" destination="8GV-WS-Yca" id="1yt-g6-DBA"/>
                         <outlet property="dislikesCountLabel" destination="nv4-B1-9hB" id="Bct-m7-2hB"/>
+                        <outlet property="likeButton" destination="iEG-gT-J71" id="V4K-4F-9tf"/>
                         <outlet property="likesCountLabel" destination="cWF-KE-Zky" id="4n2-9E-Qbh"/>
                         <outlet property="player" destination="slO-4S-0vP" id="rI7-gf-GC7"/>
                         <outlet property="viewsCountlabel" destination="dNO-Mx-91h" id="rNf-Nl-r8M"/>
@@ -260,4 +278,8 @@
             <point key="canvasLocation" x="232" y="123"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dislike_gray" width="256" height="256"/>
+        <image name="like_gray" width="256" height="256"/>
+    </resources>
 </document>
