@@ -30,11 +30,9 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
         if let url = URL(string: urlString) {
             NetworkManager.getData(url: url) { (data, response, error) in
                 
-                // Convert the JSON data to a dictionary
                 do {
                     let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
                     
-                    // Get all search result items ("items" array).
                     let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
                     
                     var videosArray = Array<Dictionary<String, Any>>()

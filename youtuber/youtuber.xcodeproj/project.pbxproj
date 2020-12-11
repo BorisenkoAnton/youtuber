@@ -114,8 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				B479566125791D4D001A0C4E /* NetworkManager.swift */,
-				B458449F25792EFD00BBDD7D /* APIConfig.plist */,
 				B41C69BD258258D600D39C00 /* NetworkConfiguration.swift */,
+				B458449F25792EFD00BBDD7D /* APIConfig.plist */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -133,8 +133,8 @@
 		B45F23E2257A5D2A007E7B6F /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				B45F23E5257A5DE5007E7B6F /* PlayerPresenterDelegate.swift */,
 				B45F23E7257A5DF4007E7B6F /* PlayerPresenter.swift */,
+				B45F23E5257A5DE5007E7B6F /* PlayerPresenterDelegate.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
