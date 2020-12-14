@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Base address</key>
+	<string>https://www.googleapis.com/youtube/v3/</string>
 	<key>Client ID</key>
 	<string>816921255387-6np8b5c8b8oerqh8md247rrr3a9er9ob.apps.googleusercontent.com</string>
 	<key>API key</key>
