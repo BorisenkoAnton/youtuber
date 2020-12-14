@@ -22,33 +22,34 @@ class PlayerPresenter: PlayerPresenterDelegate {
     
     func getVideoInfo(videoID: String){
         
-        if let apiKey = NetworkConfiguration.shared.apiKey {
-            let urlString: String = "https://www.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&id=\(videoID)&key=\(apiKey)"
-            
-            if let url = URL(string: urlString) {
-                NetworkManager.getData(url: url) { (data, response, error) in
+        guard let apiKey = NetworkConfiguration.shared.apiKey else { return }
+        guard let baseAddress = NetworkConfiguration.shared.base else { return }
+        
+        let urlString: String = "\(baseAddress)videos?part=snippet&part=statistics&id=\(videoID)&key=\(apiKey)"
+        
+        if let url = URL(string: urlString) {
+            NetworkManager.getData(url: url) { (data, response, error) in
+                
+                do {
+                    let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
                     
-                    do {
-                        let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
-                        
-                        let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
-                        
-                        let snippetDict = items[0]["snippet"] as! Dictionary<String, Any>
-                        let statsDict = items[0]["statistics"] as! Dictionary<String, Any>
+                    let items: Array<Dictionary<String, Any>> = resultDictionary["items"] as! Array<Dictionary<String, Any>>
+                    
+                    let snippetDict = items[0]["snippet"] as! Dictionary<String, Any>
+                    let statsDict = items[0]["statistics"] as! Dictionary<String, Any>
 
-                        let description = snippetDict["description"] as! String
-                        let viewCount = UInt(statsDict["viewCount"] as! String)
-                        let likeCount = UInt(statsDict["likeCount"] as! String)
-                        let dislikeCount = UInt(statsDict["dislikeCount"] as! String)
+                    let description = snippetDict["description"] as! String
+                    let viewCount = UInt(statsDict["viewCount"] as! String)
+                    let likeCount = UInt(statsDict["likeCount"] as! String)
+                    let dislikeCount = UInt(statsDict["dislikeCount"] as! String)
 
-                        let videoInfo = VideoInfo(description: description, viewCount: viewCount, likeCount: likeCount, dislikeCount: dislikeCount)
+                    let videoInfo = VideoInfo(description: description, viewCount: viewCount, likeCount: likeCount, dislikeCount: dislikeCount)
 
-                        self.viewDelegate?.setVideoInfo(videoInfo: videoInfo)
-                    } catch {
-                        let alert = AlertHelper.createAlert(title: "", message: "Data serializing error", preferredStyle: .alert)
-                        
-                        self.viewDelegate?.showAlert(alert: alert)
-                    }
+                    self.viewDelegate?.setVideoInfo(videoInfo: videoInfo)
+                } catch {
+                    let alert = AlertHelper.createAlert(title: "", message: "Data serializing error", preferredStyle: .alert)
+                    
+                    self.viewDelegate?.showAlert(alert: alert)
                 }
             }
         }

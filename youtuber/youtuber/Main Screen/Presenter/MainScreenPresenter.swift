@@ -23,9 +23,10 @@ class MainScreenPresenter: MainScreenPresenterDelegate {
     
     func fetchVideos(searchingText: String) {
 
-        let apiKey = NetworkConfiguration.shared.apiKey
-
-        let urlString: String = ("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=\(searchingText)&type=video&key=\(apiKey ?? "")").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let apiKey = NetworkConfiguration.shared.apiKey else { return }
+        guard let baseAddress = NetworkConfiguration.shared.base else { return }
+        
+        let urlString: String = ("\(baseAddress)search?part=snippet&maxResults=50&q=\(searchingText)&type=video&key=\(apiKey)").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         if let url = URL(string: urlString) {
             NetworkManager.getData(url: url) { (data, response, error) in

@@ -14,7 +14,7 @@ struct NetworkConfiguration {
     
     var apiKey: String?
     var clientID: String?
-    
+    var base: String?
     
     private init() {}
     
@@ -25,10 +25,12 @@ struct NetworkConfiguration {
            
         let apiConfigAsDictionary = NSDictionary(contentsOfFile: path)
 
-        let apiKey: String = apiConfigAsDictionary!["API key"] as! String
-        let clientID: String = apiConfigAsDictionary!["Client ID"] as! String
+        let apiKey = apiConfigAsDictionary!["API key"] as! String
+        let clientID = apiConfigAsDictionary!["Client ID"] as! String
+        let baseAddress = apiConfigAsDictionary!["Base address"] as! String
         
         NetworkConfiguration.shared.apiKey = apiKey
         NetworkConfiguration.shared.clientID = clientID
+        NetworkConfiguration.shared.base = baseAddress
     }
 }
